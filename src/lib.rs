@@ -46,4 +46,21 @@ mod tests {
             vec![0, 1, 3, 4, 89]
         )
     }
+
+    #[test]
+    fn test_quick_sort_empty_arr() {
+        let arr = vec![];
+
+        assert_eq!(quick_sort::quick_sort::execute(&arr.into()), vec![])
+    }
+
+    #[test]
+    fn test_quick_sort() {
+        let arr = vec![4, 1, 0, 89, 3];
+
+        assert_eq!(
+            quick_sort::quick_sort::execute(&arr.into()),
+            vec![0, 1, 3, 4, 89]
+        )
+    }
 }

@@ -23,7 +23,7 @@ pub mod selection_sort {
         }
     }
 
-    pub fn remove_element(arr: &Vec<i32>, element: i32) -> Vec<i32> {
+    fn remove_element(arr: &Vec<i32>, element: i32) -> Vec<i32> {
         let mut result: Vec<i32> = vec![];
 
         for e in arr.iter() {
