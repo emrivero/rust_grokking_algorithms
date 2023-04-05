@@ -2,9 +2,9 @@
 
 <img src="doc/images/book.jpg"/>
 
-<link href="https://www.amazon.es/Grokking-Algorithms-illustrated-programmers-curious/dp/1617292230">
+<a href="https://www.amazon.es/Grokking-Algorithms-illustrated-programmers-curious/dp/1617292230">
     <img src="https://freeiconshop.com/wp-content/uploads/edd/amazon-badge.png"/>
-</link>
+</a>
 
 ## Contents
 
