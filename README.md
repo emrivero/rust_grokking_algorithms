@@ -14,5 +14,8 @@
   - [Binary Search](https://github.com/emrivero/rust_grokking_algorithms/blob/master/src/search/binary_search.rs)
 
 - [Sorting Algorithm](https://github.com/emrivero/rust_grokking_algorithms/tree/master/src/sort)
+
   - [Selection Sort](https://github.com/emrivero/rust_grokking_algorithms/blob/master/src/sort/selection_sort.rs)
   - [Quick Sort](https://github.com/emrivero/rust_grokking_algorithms/blob/master/src/sort/quick_sort.rs)
+
+- [Graphs](https://github.com/emrivero/rust_grokking_algorithms/tree/master/src/graph)
