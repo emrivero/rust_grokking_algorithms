@@ -1,8 +1,11 @@
+pub mod graph;
 pub mod search;
 pub mod sort;
 
 #[cfg(test)]
 mod tests {
+    use crate::graph::graph::Graph;
+
     use super::search::binary_search;
     use super::sort::*;
 
@@ -62,5 +65,28 @@ mod tests {
             quick_sort::quick_sort::execute(&arr.into()),
             vec![0, 1, 3, 4, 89]
         )
+    }
+
+    #[test]
+    fn test_graph_bfs() {
+        let g_a = Graph::new(String::from("A"), vec![]);
+        let g_b = Graph::new(String::from("B"), vec![g_a.clone()]);
+        let g_c = Graph::new(String::from("C"), vec![g_b.clone()]);
+        let g_d = Graph::new(String::from("D"), vec![g_b.clone(), g_c.clone()]);
+        let g_f = Graph::new(String::from("F"), vec![g_a, g_d.clone()]);
+        let mut g_g = Graph::new(String::from("G"), vec![g_c.clone(), g_f]);
+
+        assert_eq!(g_g.bfs(String::from("B")), Some(String::from("B")))
+    }
+    #[test]
+    fn test_graph_bfs_none() {
+        let g_a = Graph::new(String::from("A"), vec![]);
+        let g_b = Graph::new(String::from("B"), vec![g_a.clone()]);
+        let g_c = Graph::new(String::from("C"), vec![g_b.clone()]);
+        let g_d = Graph::new(String::from("D"), vec![g_b.clone(), g_c.clone()]);
+        let g_f = Graph::new(String::from("F"), vec![g_a, g_d.clone()]);
+        let mut g_g = Graph::new(String::from("G"), vec![g_c.clone(), g_f]);
+
+        assert_eq!(g_g.bfs(String::from("R")), None)
     }
 }
