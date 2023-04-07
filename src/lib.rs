@@ -4,8 +4,10 @@ pub mod sort;
 
 #[cfg(test)]
 mod tests {
-    use crate::graph::graph::Graph;
 
+    use std::collections::HashMap;
+
+    use super::graph::*;
     use super::search::binary_search;
     use super::sort::*;
 
@@ -68,25 +70,32 @@ mod tests {
     }
 
     #[test]
-    fn test_graph_bfs() {
-        let g_a = Graph::new(String::from("A"), vec![]);
-        let g_b = Graph::new(String::from("B"), vec![g_a.clone()]);
-        let g_c = Graph::new(String::from("C"), vec![g_b.clone()]);
-        let g_d = Graph::new(String::from("D"), vec![g_b.clone(), g_c.clone()]);
-        let g_f = Graph::new(String::from("F"), vec![g_a, g_d.clone()]);
-        let mut g_g = Graph::new(String::from("G"), vec![g_c.clone(), g_f]);
+    fn test_bfs() {
+        let mut g: HashMap<String, Vec<String>> = HashMap::new();
 
-        assert_eq!(g_g.bfs(String::from("B")), Some(String::from("B")))
+        g.insert("A".to_string(), vec!["B".to_string(), "C".to_string()]);
+        g.insert("B".to_string(), vec!["F".to_string(), "D".to_string()]);
+        g.insert("C".to_string(), vec!["B".to_string()]);
+        g.insert("D".to_string(), vec![]);
+        g.insert("F".to_string(), vec!["C".to_string()]);
+
+        assert_eq!(
+            bfs::bfs(&g, &"A".to_string(), &"D".to_string()),
+            vec!["A".to_string(), "B".to_string(), "D".to_string()]
+        );
     }
-    #[test]
-    fn test_graph_bfs_none() {
-        let g_a = Graph::new(String::from("A"), vec![]);
-        let g_b = Graph::new(String::from("B"), vec![g_a.clone()]);
-        let g_c = Graph::new(String::from("C"), vec![g_b.clone()]);
-        let g_d = Graph::new(String::from("D"), vec![g_b.clone(), g_c.clone()]);
-        let g_f = Graph::new(String::from("F"), vec![g_a, g_d.clone()]);
-        let mut g_g = Graph::new(String::from("G"), vec![g_c.clone(), g_f]);
 
-        assert_eq!(g_g.bfs(String::from("R")), None)
+    #[test]
+    fn test_cycle_bfs() {
+        let mut g: HashMap<String, Vec<String>> = HashMap::new();
+
+        g.insert("A".to_string(), vec!["B".to_string()]);
+        g.insert("B".to_string(), vec!["C".to_string()]);
+        g.insert("C".to_string(), vec!["A".to_string()]);
+
+        assert_eq!(
+            bfs::bfs(&g, &"A".to_string(), &"D".to_string()),
+            Vec::<String>::new()
+        );
     }
 }
